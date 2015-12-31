@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20151231031723) do
 
   create_table "websites", force: :cascade do |t|
-    t.string   "url",                    null: false
-    t.string   "reach"
-    t.integer  "rank",                   null: false
+    t.string   "url",                              null: false
+    t.integer  "reach",                  limit: 8
+    t.integer  "rank",                             null: false
     t.integer  "page_views_per_million"
     t.decimal  "page_views_per_user"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
 end

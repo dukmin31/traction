@@ -9,8 +9,8 @@ RSpec.describe Website do
     it { is_expected.to respond_to(:page_views_per_user) }
   end
 
-	describe 'validations' do
+  describe 'validations' do
     it { is_expected.to validate_presence_of(:url) }
-		it { is_expected.to validate_presence_of(:rank) }
+    it { is_expected.to validate_presence_of(:rank) }
   end
 end
