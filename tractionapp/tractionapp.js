@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	setupTable();
-
 });
 
 function setupTable(){
@@ -27,6 +26,11 @@ function setupDataTable(data){
 					"orderable": false,
 					"order": []
 				}],
+				"createdRow": function ( row, data, index ) {
+					 $('td', row).click(function(){
+						 showModal(data)
+					 });
+			 	},
 				"aoColumnDefs": [
 								{ "sWidth": "1em", "aTargets":  [0] },
 								{ "sWidth": "20em", "aTargets": [1] },
@@ -39,8 +43,31 @@ function setupDataTable(data){
 					{ "sTitle": "Page Views per user", "mDataProp": "page_views_per_user" },
 					{ "sTitle": "Page Views per million", "mDataProp": "page_views_per_million" }]
 	});
+}
 
-	$('#siteTable tr').click(function () {
-		console.log(this);
-	});
+function showModal(website){
+	$("#modalLabel").text(website.url);
+	createElementsOnModal($("#websiteModalBody"), website)
+	$("#websiteModal").modal();
+}
+
+function createElementsOnModal(modal, website){
+	var html =
+	[ "<form>",
+	  "<div class='form-group'>",
+
+		"<h3>Rank:", website.rank,"</h3>",
+		"<label for='recipient-name' class='control-label'>URL:</label>",
+		"<input class='form-control' type='text' value='", website.url , "'/>",
+
+		"<label for='recipient-name' class='control-label'>Page Views per user:</label>",
+		"<input class='form-control' type='text' value='", website.page_views_per_user , "'/>",
+
+		"<label for='recipient-name' class='control-label'>Pages Views per million:</label>",
+		"<input class='form-control' type='text' value='", website.page_views_per_million , "'/>",
+
+		"</div></form>"
+	].join("");
+
+	modal.html(html);
 }
