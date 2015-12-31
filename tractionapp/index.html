@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title> Alexa Top 100 sites</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Alexa Top 100 Sites">
+    <meta name="author" content="franzejr">
 
  		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
 		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+
 		<!-- bower:css -->
 		<link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
 		<link rel="stylesheet" href="bower_components/datatables-bootstrap3/BS3/assets/css/datatables.css" />
@@ -38,54 +40,7 @@
 
 				<div id="wrap">
 		 			<div class="container">
-		 				<table cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
-		 					<thead>
-		 						<tr>
-		 							<th>Rank</th>
-		 							<th>Name</th>
-		 							<th>Page Views per user</th>
-		 							<th>Page Views per million</th>
-									<th class="no-sort">Actions</th>
-		 						</tr>
-		 					</thead>
-		 					<tbody>
-		 						<tr>
-		 							<td>1</td>
-		 							<td>google.com</td>
-									<td>19.53</td>
-		 							<td>105242</td>
-									<td align="center"><i class="fa fa-pencil"></i></td>
-		 						</tr>
-								<tr>
-									<td>2</td>
-									<td>facebook.com</td>
-									<td>12.77</td>
-									<td>56430</td>
-									<td align="center"><i class="fa fa-pencil"></i></td>
-								</tr>
-								<tr>
-		 							<td>3</td>
-		 							<td>youtube.com</td>
-									<td>19.53</td>
-		 							<td>105242</td>
-									<td align="center"><i class="fa fa-pencil"></i></td>
-		 						</tr>
-								<tr>
-		 							<td>4</td>
-		 							<td>google.com</td>
-									<td>19.53</td>
-		 							<td>105242</td>
-									<td align="center"><i class="fa fa-pencil"></i></td>
-		 						</tr>
-								<tr>
-		 							<td>5</td>
-		 							<td>google.com</td>
-									<td>19.53</td>
-		 							<td>105242</td>
-									<td align="center"><i class="fa fa-pencil"></i></td>
-		 						</tr>
-
-		 					</tbody>
+		 				<table cellpadding="0" id="siteTable" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
 		 				</table>
 		 			</div>
 		 		</div>
