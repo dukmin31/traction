@@ -49,25 +49,47 @@ function showModal(website){
 	$("#modalLabel").text(website.url);
 	createElementsOnModal($("#websiteModalBody"), website)
 	$("#websiteModal").modal();
+
+	$("#saveChangesButton").click(submitForm);
+}
+
+function submitForm(){
+	console.log('enviar');
+	$.ajax({
+			 type: "PUT",
+			 url: "http://192.168.33.10:3000/website/update",
+			 data: $("#websiteForm").serialize(), // serializes the form's elements.
+			 success: function(data)
+			 {
+					 alert("Success!");
+			 },
+			 error: function(data)
+			 {
+				 alert("Problem!");
+			 }
+		 });
 }
 
 function createElementsOnModal(modal, website){
 	var html =
-	[ "<form>",
+	[ "<form id='websiteForm'>",
 	  "<div class='form-group'>",
 
 		"<h3>Rank:", website.rank,"</h3>",
 		"<label for='recipient-name' class='control-label'>URL:</label>",
-		"<input class='form-control' type='text' value='", website.url , "'/>",
+		"<input class='form-control' name='url' type='text' value='", website.url , "'/>",
+
+		"<input type='hidden' name='rank' value='", website.rank , "'/>",
 
 		"<label for='recipient-name' class='control-label'>Page Views per user:</label>",
-		"<input class='form-control' type='text' value='", website.page_views_per_user , "'/>",
+		"<input class='form-control' name='page_views_per_user' type='text' value='", website.page_views_per_user , "'/>",
 
 		"<label for='recipient-name' class='control-label'>Pages Views per million:</label>",
-		"<input class='form-control' type='text' value='", website.page_views_per_million , "'/>",
+		"<input class='form-control' name='page_views_per_million' type='text' value='", website.page_views_per_million , "'/>",
 
 		"</div></form>"
 	].join("");
 
 	modal.html(html);
+
 }
