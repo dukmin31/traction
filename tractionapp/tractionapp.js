@@ -1,12 +1,19 @@
 $(document).ready(function() {
+	setupDataTable();
+});
+
+
+function setupDataTable(){
+
 	$('.datatable').dataTable({
 		"sPaginationType": "bs_full",
 		"columnDefs": [ {
-      "targets"  : 'no-sort',
-      "orderable": false,
-      "order": []
-    }]
+			"targets"  : 'no-sort',
+			"orderable": false,
+			"order": []
+		}]
 	});
+
 	$('.datatable').each(function(){
 		var datatable = $(this);
 		// SEARCH - Add the placeholder for Search and Turn this into in-line form control
@@ -17,4 +24,4 @@ $(document).ready(function() {
 		var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
 		length_sel.addClass('form-control input-sm');
 	});
-});
+}
