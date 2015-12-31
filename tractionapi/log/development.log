@@ -708,3 +708,10 @@ Processing by WebsiteController#show as HTML
   Parameters: {"id"=>"11"}
   [1m[36mWebsite Load (2.0ms)[0m  [1mSELECT  "websites".* FROM "websites" WHERE "websites"."id" = ? LIMIT 1[0m  [["id", 11]]
 Completed 200 OK in 33ms (Views: 0.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/website/" for 192.168.33.1 at 2015-12-31 15:02:40 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WebsiteController#index as HTML
+  [1m[35mWebsite Load (3.8ms)[0m  SELECT "websites".* FROM "websites"
+Completed 200 OK in 81ms (Views: 55.0ms | ActiveRecord: 7.0ms)
