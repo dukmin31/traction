@@ -1,6 +1,14 @@
 $(document).ready(function() {
 	setupDataTable();
+	getData();
 });
+
+function getData(){
+	$.getJSON( "http://192.168.33.10:3000/website/", function( data ) {
+	  var items = [];
+		console.log(data)
+	});
+}
 
 
 function setupDataTable(){
