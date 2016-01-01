@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="tractionapp">
   <head>
     <title> Alexa Top 100 sites</title>
     <meta charset="utf-8">
@@ -15,6 +15,7 @@
 		<!-- bower:css -->
 		<link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
 		<link rel="stylesheet" href="bower_components/datatables-bootstrap3/BS3/assets/css/datatables.css" />
+		<link rel="stylesheet" href="bower_components/angular-datatables/dist/plugins/bootstrap/datatables.bootstrap.css" />
 		<!-- endbower -->
 
 	</head>
@@ -27,7 +28,6 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -40,8 +40,9 @@
 
 				<div id="wrap">
 		 			<div class="container">
-		 				<table cellpadding="0" id="siteTable" cellspacing="0" border="0" class="datatable table table-striped table-bordered">
-		 				</table>
+            <div ng-controller="WithAjaxCtrl as tractionapp">
+                <table datatable="" dt-instance="tractionapp.dtInstance" dt-options="tractionapp.dtOptions" dt-columns="tractionapp.dtColumns" class="row-border hover"></table>
+            </div>
 		 			</div>
 		 		</div>
 
@@ -55,6 +56,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="modalLabel">Modal title</h4>
           </div>
+          <div class="modal-body alert hidden" role="alert" id="callback-message">Message</div>
           <div id="websiteModalBody" class="modal-body">
             ...
           </div>
@@ -73,6 +75,20 @@
 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
 		<script src="bower_components/datatables-bootstrap3/BS3/assets/js/datatables.js"></script>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/bootstrap/angular-datatables.bootstrap.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/colreorder/angular-datatables.colreorder.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/columnfilter/angular-datatables.columnfilter.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/light-columnfilter/angular-datatables.light-columnfilter.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/colvis/angular-datatables.colvis.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/fixedcolumns/angular-datatables.fixedcolumns.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/fixedheader/angular-datatables.fixedheader.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/tabletools/angular-datatables.tabletools.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/buttons/angular-datatables.buttons.js"></script>
+		<script src="bower_components/angular-datatables/dist/plugins/select/angular-datatables.select.js"></script>
+		<script src="bower_components/angular-resource/angular-resource.js"></script>
 		<!-- endbower -->
 
 		<script type="text/javascript" src="tractionapp.js"></script>

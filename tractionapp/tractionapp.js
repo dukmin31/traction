@@ -1,56 +1,49 @@
-$(document).ready(function() {
-	setupTable();
-});
+angular.module('tractionapp', ['datatables', 'ngResource'])
+.controller('WithAjaxCtrl', WithAjaxCtrl);
 
-function setupTable(){
-	$.ajax({
-		"type": "GET",
-		"url": "http://192.168.33.10:3000/website/",
-		"success": function (data) {
-			setupDataTable(data);
+function WithAjaxCtrl($scope, DTOptionsBuilder, DTColumnBuilder) {
+    var vm = this;
+		vm.message = '';
+		vm.clickHandler = clickHandler;
+    vm.dtOptions = DTOptionsBuilder.fromSource('http://192.168.33.10:3000/website/')
+        .withPaginationType('full_numbers')
+				.withOption('rowCallback', rowCallback);
+
+    vm.dtColumns = [
+        DTColumnBuilder.newColumn('rank').withTitle('Rank'),
+        DTColumnBuilder.newColumn('url').withTitle('URL'),
+				DTColumnBuilder.newColumn('page_views_per_user').withTitle('Page Views per user'),
+        DTColumnBuilder.newColumn('page_views_per_million').withTitle('Page Views per million')
+    ];
+
+		vm.dtInstance = {};
+
+		function clickHandler(website) {
+				 vm.message = website.rank + ' - ' + website.url;
+				 $("#modalLabel").text(website.url);
+				 createElementsOnModal($("#websiteModalBody"), website)
+				 $("#websiteModal").modal();
+
+				 $("#saveChangesButton").click(submitForm);
+
+				 $('#websiteModal').on('hidden.bs.modal', function () {
+  			 		$("#callback-message").addClass("hidden");
+						$("#callback-message").removeClass("alert-success alert-danger");
+						$("#callback-message").text("");
+						vm.dtInstance.rerender();
+				 })
+		 }
+
+		function rowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+				// Unbind first in order to avoid any duplicate handler (see https://github.com/l-lin/angular-datatables/issues/87)
+				$('td', nRow).unbind('click');
+				$('td', nRow).bind('click', function() {
+						$scope.$apply(function() {
+								vm.clickHandler(aData);
+						});
+				});
+				return nRow;
 		}
-	});
-}
-
-function setupDataTable(data){
-	$('#siteTable').dataTable({
-				"aaSorting": [[0, "asc"]],
-				"aaData": data,
-				"bScrollCollapse": true,
-				"bFilter": true,
-				"bProcessing": true,
-				"sPaginationType": "full_numbers",
-				"bJQueryUI": true,
-				"columnDefs": [ {
-					"targets"  : 'no-sort',
-					"orderable": false,
-					"order": []
-				}],
-				"createdRow": function ( row, data, index ) {
-					 $('td', row).click(function(){
-						 showModal(data)
-					 });
-			 	},
-				"aoColumnDefs": [
-								{ "sWidth": "1em", "aTargets":  [0] },
-								{ "sWidth": "20em", "aTargets": [1] },
-								{ "sWidth": "7em", "aTargets":  [2] },
-								{ "sWidth": "7em", "aTargets":  [3] }
-					],
-				"aoColumns": [
-					{ "sTitle": "Rank" ,"mDataProp": "rank"},
-					{ "sTitle": "URL", "mDataProp": "url"},
-					{ "sTitle": "Page Views per user", "mDataProp": "page_views_per_user" },
-					{ "sTitle": "Page Views per million", "mDataProp": "page_views_per_million" }]
-	});
-}
-
-function showModal(website){
-	$("#modalLabel").text(website.url);
-	createElementsOnModal($("#websiteModalBody"), website)
-	$("#websiteModal").modal();
-
-	$("#saveChangesButton").click(submitForm);
 }
 
 function submitForm(){
@@ -61,11 +54,14 @@ function submitForm(){
 			 data: $("#websiteForm").serialize(), // serializes the form's elements.
 			 success: function(data)
 			 {
-					 alert("Success!");
+				 	$("#callback-message").removeClass("hidden");
+				  $("#callback-message").addClass("alert-success");
+				 	$("#callback-message").text("Success!")
 			 },
 			 error: function(data)
 			 {
-				 alert("Problem!");
+				 $("#callback-message").addClass("alert-danger");
+				 $("#callback-message").text("Problem!")
 			 }
 		 });
 }
