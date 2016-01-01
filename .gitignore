@@ -5,7 +5,7 @@
 *.rbc
 capybara-*.html
 .rspec
-tractionapi/log
+tractionapi/log/*.log
 *.log
 /tmp
 /db/*.sqlite3
