@@ -1,6 +1,7 @@
 # Traction APP
 
-Live here: http://franzejr.com/tractionapp/
+Live *here:* http://franzejr.com/tractionapp/
+
 (the requests may be slow, because of the API is using Heroku free dyno)
 
 Simple AngularJS Application getting data from [Traction API](https://github.com/franzejr/tractionapi).
@@ -17,4 +18,5 @@ on this repository, and then it will create a simple WebServer for you.
 
 ## Set your `API_URL`
 
-1. Set where is your `API`, by setting `TRACTION_API_URL` variable in the tractionapp.js
+1. Set where is your `API`, by setting `TRACTION_API_URL` variable in the
+[tractionapp.js](https://github.com/franzejr/traction_challenge/blob/master/tractionapp/tractionapp.js#L4)
