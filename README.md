@@ -4,8 +4,8 @@ Technologies used:
 
 - Rails-api with Active Model Serializers
 - Angular JS
+- Bootstrap
 - Bower
-
 
 ## [Traction API](/tractionapi)
 
