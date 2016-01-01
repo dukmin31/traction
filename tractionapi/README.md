@@ -3,7 +3,6 @@
 This is a Scrapper Job API. It grabs the Alexa top 100 sites and add to
 the database.
 
-
 #How to setup
 
 ### Environment
@@ -12,6 +11,12 @@ Make sure you are using:
 
 - Ruby 2.3.0
 - Rails 4.2.5
+
+### Import Alexa Top 100 websites
+
+```
+bundle exec rake importer:run
+```
 
 ### Create AWS Keys
 
