@@ -1,11 +1,13 @@
 angular.module('tractionapp', ['datatables', 'ngResource'])
 .controller('WithAjaxCtrl', WithAjaxCtrl);
 
+var TRACTION_API_URL = 'https://tractionapi.herokuapp.com/website';
+
 function WithAjaxCtrl($scope, DTOptionsBuilder, DTColumnBuilder) {
     var vm = this;
 		vm.message = '';
 		vm.clickHandler = clickHandler;
-    vm.dtOptions = DTOptionsBuilder.fromSource('http://192.168.33.10:3000/website/')
+    vm.dtOptions = DTOptionsBuilder.fromSource(TRACTION_API_URL)
         .withPaginationType('full_numbers')
 				.withOption('rowCallback', rowCallback);
 
@@ -50,7 +52,7 @@ function submitForm(){
 	console.log('enviar');
 	$.ajax({
 			 type: "PUT",
-			 url: "http://192.168.33.10:3000/website/update",
+			 url: TRACTION_API_URL,
 			 data: $("#websiteForm").serialize(), // serializes the form's elements.
 			 success: function(data)
 			 {

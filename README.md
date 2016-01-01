@@ -7,7 +7,7 @@ Technologies used:
 - Bootstrap
 - Bower
 
-## [Traction API](/tractionapi)
+## [Traction API](https://github.com/franzejr/tractionapi)
 
 API Scrapper Job. It grabs the Alexa top 100 websites and add them to the database.
 
