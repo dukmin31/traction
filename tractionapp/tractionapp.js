@@ -49,10 +49,9 @@ function WithAjaxCtrl($scope, DTOptionsBuilder, DTColumnBuilder) {
 }
 
 function submitForm(){
-	console.log('enviar');
 	$.ajax({
 			 type: "PUT",
-			 url: TRACTION_API_URL,
+			 url: TRACTION_API_URL + '/update',
 			 data: $("#websiteForm").serialize(), // serializes the form's elements.
 			 success: function(data)
 			 {
